@@ -12,7 +12,15 @@
       <script src="public/application.js" type="text/javascript" charset="utf-8" defer></script>
     </head>
     <body class="container-fluid">
-      <h1>Example Tic Tac Toe</h1>
+
+      <nav class="nav">
+        <!-- Button trigger sign-up modal -->
+        <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#signUpModal">
+          Sign Up
+        </button>
+      </nav>
+
+      <h1>Tic Tac Toe</h1>
 
       <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do
       eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad
@@ -41,6 +49,34 @@
       <div class="col-xs-4 col-md-4 box gameSquare" id="8">Index 8</div>
     </div>
   </div>
+
+  <!-- sign up modal  -->
+<div class="modal fade" id="signUpModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <!-- <h5 class="modal-title" id="signUpModalLabel">Sign Up Here</h5> -->
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <form id="sign-up">
+      <fieldset>
+        <legend><br>Sign IN!</legend>
+        <input type="text" name="credentials[email]" placeholder="Enter Email">
+        <input type="password" name="credentials[password]" placeholder="Enter Password">
+        <input type="submit" name="submit" class="btn btn-primary" value="Create account!">
+      </fieldset>
+    </form>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+        <!-- <button type="button" class="btn btn-primary">Save changes</button> -->
+      </div>
+    </div>
+  </div>
+</div>
 
     </body>
 </html>
