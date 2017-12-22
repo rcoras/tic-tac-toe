@@ -4,12 +4,13 @@ const api = require('./api')
 const ui = require('./ui')
 
 let playerToken = 'X'
-const emptyCell = ''
+const emptySquare = ''
 
 const onBoxClick = function (event) {
   // create boxId token to use in jquery to update correct box
   const boxId = '#' + this.id
-  if ($(boxId).text() === emptyCell) {
+  // check if square is empty
+  if ($(boxId).text() === emptySquare) {
     // rotate between X and O
     if (playerToken === 'X') {
       playerToken = 'O'
@@ -30,9 +31,18 @@ const onSignUp = function (event) {
     .catch(ui.signUpFailure)
 }
 
+const onSignIn = function (event) {
+  const data = getFormFields(this)
+  event.preventDefault()
+  api.signIn(data)
+    .then(ui.signInSuccess)
+    .catch(ui.signInFailure)
+}
+
 const addHandlers = function () {
   $('.gameSquare').on('click', onBoxClick)
   $('#sign-up').on('submit', onSignUp)
+  $('#sign-in').on('submit', onSignIn)
 }
 
 module.exports = {
