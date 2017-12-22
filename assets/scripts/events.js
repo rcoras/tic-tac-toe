@@ -6,6 +6,12 @@ const ui = require('./ui')
 let playerToken = 'X'
 const emptySquare = ''
 
+// let gameArray = []
+// const checkForWinner = function () {
+//   return true
+// }
+// debugger
+
 const onBoxClick = function (event) {
   // create boxId token to use in jquery to update correct box
   const boxId = '#' + this.id
@@ -43,6 +49,7 @@ const addHandlers = function () {
   $('.gameSquare').on('click', onBoxClick)
   $('#sign-up').on('submit', onSignUp)
   $('#sign-in').on('submit', onSignIn)
+  $('#change-pw').on('submit', onSignIn)
 }
 
 module.exports = {
