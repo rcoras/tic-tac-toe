@@ -1,4 +1,5 @@
 'use strict'
+const config = require('./config')
 
 const signUp = function (data) {
   return $.ajax({
@@ -9,5 +10,5 @@ const signUp = function (data) {
 }
 
 module.exports = {
-  signUp,
+  signUp
 }

@@ -29,7 +29,7 @@ const onSignUp = function (event) {
 
 const addHandlers = function () {
   $('.gameSquare').on('click', onBoxClick)
-  $('#signUp').on('submit', onSignUp)
+  $('#sign-up').on('submit', onSignUp)
 }
 
 module.exports = {
