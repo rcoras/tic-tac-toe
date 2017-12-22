@@ -4,17 +4,20 @@ const api = require('./api')
 const ui = require('./ui')
 
 let playerToken = 'X'
+const emptyCell = ''
 
 const onBoxClick = function (event) {
   // create boxId token to use in jquery to update correct box
   const boxId = '#' + this.id
-  // rotate between X and O
-  if (playerToken === 'X') {
-    playerToken = 'O'
-    $(boxId).text('X')
-  } else {
-    playerToken = 'X'
-    $(boxId).text('O')
+  if ($(boxId).text() === emptyCell) {
+    // rotate between X and O
+    if (playerToken === 'X') {
+      playerToken = 'O'
+      $(boxId).text('X')
+    } else {
+      playerToken = 'X'
+      $(boxId).text('O')
+    }
   }
 }
 
