@@ -1,13 +1,25 @@
 $icon-font-path: '~bootstrap-sass/assets/fonts/bootstrap/';
 @import '~bootstrap-sass/assets/stylesheets/bootstrap';
 
-// .gameboard {
-//
-// }
-//
+
+// #2f435e, #44566c, #ececec, #4b5e65, #201b22
+
+body {
+  background-color: #ececec;
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
 
 .box {
-  border: 1px solid #000000;
+  border: 5px solid #2f435e;
+  font-size: 32px;
   height: 150px;
-  width: 150px;
+  padding-top: 45px;
+  text-align: center;
+  width: 200px;
+}
+
+.gameboard {
 }

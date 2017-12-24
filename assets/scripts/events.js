@@ -70,8 +70,9 @@ const onSignIn = function (event) {
 
 const onChangePassword = function (event) {
   const data = getFormFields(this)
+  console.log(data)
   event.preventDefault()
-  api.onChangePassword(data)
+  api.changePassword(data)
     .then(ui.changePasswordSuccess)
     .catch(ui.changePasswordFailure)
 }
