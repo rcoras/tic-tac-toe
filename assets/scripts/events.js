@@ -10,20 +10,25 @@ const gameArray = ['', '', '', '', '', '', '', '', '']
 
 const checkForWinner = function () {
   // check for horizontal wins
-  console.log(gameArray)
-  if ((gameArray[0] === gameArray[1]) && (gameArray[0] === gameArray[2]) && (gameArray[0] !== '')) { return true }
-  if ((gameArray[3] === gameArray[4]) && (gameArray[3] === gameArray[5]) && (gameArray[0] !== '')) { return true }
-  if ((gameArray[6] === gameArray[7]) && (gameArray[6] === gameArray[8]) && (gameArray[0] !== '')) { return true }
-  // check for vertical wins
-  if ((gameArray[0] === gameArray[3]) && (gameArray[0] === gameArray[6]) && (gameArray[0] !== '')) { return true }
-  if ((gameArray[1] === gameArray[4]) && (gameArray[1] === gameArray[7]) && (gameArray[0] !== '')) { return true }
-  if ((gameArray[2] === gameArray[5]) && (gameArray[2] === gameArray[8]) && (gameArray[0] !== '')) { return true }
-  // check for diaganol wins
-  if ((gameArray[0] === gameArray[4]) && (gameArray[0] === gameArray[8]) && (gameArray[0] !== '')) { return true }
-  if ((gameArray[2] === gameArray[4]) && (gameArray[2] === gameArray[6]) && (gameArray[0] !== '')) {
+  if ((gameArray[0] === gameArray[1]) && (gameArray[0] === gameArray[2]) && (gameArray[0] !== '')) {
     return true
-
-  // check if board is full/ check to make sure don't declare winner before someone wins
+  } else if ((gameArray[3] === gameArray[4]) && (gameArray[3] === gameArray[5]) && (gameArray[3] !== '')) {
+    return true
+  } else if ((gameArray[6] === gameArray[7]) && (gameArray[6] === gameArray[8]) && (gameArray[6] !== '')) {
+    return true
+    // check for vertical wins
+  } else if ((gameArray[0] === gameArray[3]) && (gameArray[0] === gameArray[6]) && (gameArray[0] !== '')) {
+    return true
+  } else if ((gameArray[1] === gameArray[4]) && (gameArray[1] === gameArray[7]) && (gameArray[1] !== '')) {
+    return true
+  } else if ((gameArray[2] === gameArray[5]) && (gameArray[2] === gameArray[8]) && (gameArray[2] !== '')) {
+    return true
+    // check for diaganol wins
+  } else if ((gameArray[0] === gameArray[4]) && (gameArray[0] === gameArray[8]) && (gameArray[0] !== '')) {
+    return true
+  } else if ((gameArray[2] === gameArray[4]) && (gameArray[2] === gameArray[6]) && (gameArray[2] !== '')) {
+    return true
+    // check if board is full/ check to make sure don't declare winner before someone wins
   } else {
     return false
   }
