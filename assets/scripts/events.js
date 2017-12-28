@@ -5,6 +5,7 @@ const ui = require('./ui')
 
 let playerToken = 'X'
 const emptySquare = ''
+let isGameOver = false
 
 const gameArray = ['', '', '', '', '', '', '', '', '']
 
@@ -28,7 +29,6 @@ const checkForWinner = function () {
     return true
   } else if ((gameArray[2] === gameArray[4]) && (gameArray[2] === gameArray[6]) && (gameArray[2] !== '')) {
     return true
-    // check if board is full/ check to make sure don't declare winner before someone wins
   } else {
     return false
   }
@@ -38,6 +38,9 @@ const onBoxClick = function (event) {
   // create boxId token to use in jquery to update correct box
   const boxId = '#' + this.id
   // check if square is empty
+  if (isGameOver === true) {
+    return
+  }
   if ($(boxId).text() === emptySquare) {
     // rotate between X and O
     if (playerToken === 'X') {
@@ -54,6 +57,7 @@ const onBoxClick = function (event) {
   if (checkForWinner() === true) {
     $('#message').text('WINNER!')
     console.log('winner board', gameArray)
+    isGameOver = true
   }
 }
 
