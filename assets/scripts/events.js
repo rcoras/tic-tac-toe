@@ -6,6 +6,7 @@ const ui = require('./ui')
 let playerToken = 'X'
 const emptySquare = ''
 let isGameOver = false
+let startGame = false
 
 const gameArray = ['', '', '', '', '', '', '', '', '']
 
@@ -39,6 +40,9 @@ const onBoxClick = function (event) {
   const boxId = '#' + this.id
   // check if square is empty
   if (isGameOver === true) {
+    return
+  }
+  if (startGame === false) {
     return
   }
   if ($(boxId).text() === emptySquare) {
@@ -94,12 +98,21 @@ const onSignOut = function (event) {
     .catch(ui.signOutFailure)
 }
 
+const onStartGame = function (event) {
+  event.preventDefault()
+  startGame = true
+  api.startGame()
+    .then(ui.startGameSuccess)
+    .catch(ui.startGameFailure)
+}
+
 const addHandlers = function () {
   $('.gameSquare').on('click', onBoxClick)
   $('#sign-up').on('submit', onSignUp)
   $('#sign-in').on('submit', onSignIn)
   $('#change-pw').on('submit', onChangePassword)
   $('#sign-out').on('click', onSignOut)
+  $('#start-game-button').on('click', onStartGame)
 }
 
 module.exports = {
