@@ -52,6 +52,7 @@ const onBoxClick = function (event) {
     }
   }
   if (checkForWinner() === true) {
+    $('#message').text('WINNER!')
     console.log('winner board', gameArray)
   }
 }
