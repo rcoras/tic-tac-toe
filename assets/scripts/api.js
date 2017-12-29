@@ -51,10 +51,23 @@ const startGame = function (data) {
   })
 }
 
+// need to send data correctly. Might need to use - contentType: 'application/json' in code as well
+const updateGame = function (data) {
+  console.log('is this working', data)
+  return $.ajax({
+    url: config.apiOrigin + '/games/' + data.game.id,
+    method: 'PATCH',
+    headers: {
+      Authorization: 'Token token=' + store.user.token
+    }
+  })
+}
+
 module.exports = {
   signUp,
   signIn,
   changePassword,
   signOut,
-  startGame
+  startGame,
+  updateGame
 }

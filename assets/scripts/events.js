@@ -2,6 +2,7 @@
 const getFormFields = require(`../../lib/get-form-fields`)
 const api = require('./api')
 const ui = require('./ui')
+const store = require('./store')
 
 let playerToken = 'X'
 const emptySquare = ''
@@ -109,8 +110,18 @@ const onStartGame = function (event) {
     .catch(ui.startGameFailure)
 }
 
+const onUpdateGame = function (event) {
+  event.preventDefault()
+  const data = store.data
+  console.log('what data do I have', data)
+  api.updateGame(data)
+    .then(ui.updateGameSuccess)
+    .catch(ui.updateGameFailure)
+}
+
 const addHandlers = function () {
   $('.gameSquare').on('click', onBoxClick)
+  $('.gameSquare').on('click', onUpdateGame)
   $('#sign-up').on('submit', onSignUp)
   $('#sign-in').on('submit', onSignIn)
   $('#change-pw').on('submit', onChangePassword)

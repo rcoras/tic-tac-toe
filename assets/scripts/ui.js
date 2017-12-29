@@ -41,11 +41,22 @@ const signOutFailure = function (error) {
   $('#message').text('Error signing out')
 }
 
-const startGameSuccess = function () {
+const startGameSuccess = function (data) {
   console.log('Successfully Started Game')
+  store.data = data
+  console.log(store.data)
 }
 
 const startGameFailure = function (error) {
+  console.error(error)
+}
+
+const updateGameSuccess = function (data) {
+  console.log('Successfully Updated Game')
+  console.log(data)
+}
+
+const updateGameFailure = function (error) {
   console.error(error)
 }
 
@@ -59,5 +70,7 @@ module.exports = {
   signOutSuccess,
   signOutFailure,
   startGameSuccess,
-  startGameFailure
+  startGameFailure,
+  updateGameSuccess,
+  updateGameFailure
 }
