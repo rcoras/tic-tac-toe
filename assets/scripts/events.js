@@ -51,11 +51,13 @@ const onBoxClick = function (event) {
       playerToken = 'O'
       $(boxId).text('X')
       gameArray[this.id] = 'x'
+      $('#message').text('O you\'re up')
       // console.log(gameArray)
     } else {
       playerToken = 'X'
       $(boxId).text('O')
       gameArray[this.id] = 'o'
+      $('#message').text('X you\'re up')
     }
   }
   if (checkForWinner() === true) {
@@ -101,6 +103,7 @@ const onSignOut = function (event) {
 const onStartGame = function (event) {
   event.preventDefault()
   startGame = true
+  $('#message').text('X make your first move')
   api.startGame()
     .then(ui.startGameSuccess)
     .catch(ui.startGameFailure)
