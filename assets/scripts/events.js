@@ -62,7 +62,10 @@ const onBoxClick = function (event) {
     }
   }
   if (checkForWinner() === true) {
-    $('#message').text('WINNER!')
+    if (playerToken === 'O') {
+      // message opposite of player token because token switches with each turn
+      $('#message').text('X WINS!')
+    } else $('#message').text('O WINS!')
     console.log('winner board', gameArray)
     isGameOver = true
   }
