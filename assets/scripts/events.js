@@ -9,7 +9,7 @@ const emptySquare = ''
 let isGameOver = false
 let startGame = false
 
-const gameArray = ['', '', '', '', '', '', '', '', '']
+let gameArray = ['', '', '', '', '', '', '', '', '']
 
 const checkForWinner = function () {
   // check for horizontal wins
@@ -107,27 +107,46 @@ const onSignOut = function (event) {
     .catch(ui.signOutFailure)
 }
 
+let gameCount = 0
+
 const onStartGame = function (event) {
   event.preventDefault()
   startGame = true
   $('#message').text('X make your first move')
+  gameCount += 1
+  if (gameCount >= 1) {
+    $('#start-game-button').text('Start New Game')
+    gameArray = ['', '', '', '', '', '', '', '', '']
+    $('#0').text('')
+    $('#1').text('')
+    $('#2').text('')
+    $('#3').text('')
+    $('#4').text('')
+    $('#5').text('')
+    $('#6').text('')
+    $('#7').text('')
+    $('#8').text('')
+    isGameOver = false
+    startGame = true
+    playerToken = 'X'
+  }
   api.startGame()
     .then(ui.startGameSuccess)
     .catch(ui.startGameFailure)
 }
 
-const onUpdateGame = function (event) {
-  event.preventDefault()
-  const data = store.data
-  console.log('what data do I have', data)
-  api.updateGame(data)
-    .then(ui.updateGameSuccess)
-    .catch(ui.updateGameFailure)
-}
+// const onUpdateGame = function (event) {
+//   event.preventDefault()
+//   const data = store.data
+//   console.log('what data do I have', data)
+//   api.updateGame(data)
+//     .then(ui.updateGameSuccess)
+//     .catch(ui.updateGameFailure)
+// }
 
 const addHandlers = function () {
   $('.gameSquare').on('click', onBoxClick)
-  $('.gameSquare').on('click', onUpdateGame)
+  // $('.gameSquare').on('click', onUpdateGame)
   $('#sign-up').on('submit', onSignUp)
   $('#sign-in').on('submit', onSignIn)
   $('#change-pw').on('submit', onChangePassword)
