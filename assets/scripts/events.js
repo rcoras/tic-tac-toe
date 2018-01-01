@@ -74,6 +74,7 @@ const onBoxClick = function (event) {
 const onSignUp = function (event) {
   const data = getFormFields(this)
   event.preventDefault()
+  $('#signUpModal').modal('hide')
   console.log(data)
   api.signUp(data)
     .then(ui.signUpSuccess)
@@ -83,6 +84,7 @@ const onSignUp = function (event) {
 const onSignIn = function (event) {
   const data = getFormFields(this)
   event.preventDefault()
+  $('#signInModal').modal('hide')
   api.signIn(data)
     .then(ui.signInSuccess)
     .catch(ui.signInFailure)
@@ -92,6 +94,7 @@ const onChangePassword = function (event) {
   const data = getFormFields(this)
   console.log(data)
   event.preventDefault()
+  $('#changePwModal').modal('hide')
   api.changePassword(data)
     .then(ui.changePasswordSuccess)
     .catch(ui.changePasswordFailure)
