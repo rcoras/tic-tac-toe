@@ -37,7 +37,7 @@ const checkForWinner = function () {
 }
 
 const isBoardFull = function (gameArray) {
-  for (let i = 0; i < gameArray.length; i++) {
+  for (let i = 0; i <= gameArray.length; i++) {
     if (gameArray[i] === '') {
       return false
     }
@@ -57,10 +57,14 @@ const onBoxClick = function (event) {
   if ($(boxId).text() === emptySquare) {
     // rotate between X and O
     if (playerToken === 'X') {
-      playerToken = 'O'
       $(boxId).text('X')
       gameArray[this.id] = 'x'
-      $('#message').text('O you\'re up')
+      playerToken = 'O'
+      if (isBoardFull(gameArray) === false) {
+        $('#message').text('O you\'re up')
+      } else if (checkForWinner() === false) {
+        $('#message').text('DRAW. No Winner. Press Button to Play Again')
+      }
       // console.log(gameArray)
     } else {
       playerToken = 'X'
@@ -68,7 +72,7 @@ const onBoxClick = function (event) {
       gameArray[this.id] = 'o'
       $('#message').text('X you\'re up')
     }
-  } else {
+  } else if (isBoardFull(gameArray) === false) {
     $('#message').text('You can\'t move there. Choose an empty square')
   }
   if (checkForWinner() === true) {
