@@ -149,18 +149,63 @@ const onStartGame = function (event) {
     .catch(ui.startGameFailure)
 }
 
-// const onUpdateGame = function (event) {
-//   event.preventDefault()
-//   const data = store.data
-//   console.log('what data do I have', data)
-//   api.updateGame(data)
-//     .then(ui.updateGameSuccess)
-//     .catch(ui.updateGameFailure)
-// }
+const onUpdateGame = function () {
+  const data = store.data
+  // console.log('what data do I have', data)
+  if (emptySquare !== '') {
+    return
+  }
+  // check if game is over to use over in json needed for api
+  let over = false
+  let counter = 0
+  if ((checkForWinner() === true) || (isBoardFull(gameArray) === true)) {
+    over = true
+  }
+  // if (over) {
+  //   return
+  // }
+  // update game when player is X
+  if ((playerToken === 'O') && (counter === 0)) {
+    const updateX = {
+      game: {
+        cell: {
+          index: this.id,
+          value: 'x'
+        },
+        over: over
+      }
+    }
+    const dataObject = JSON.stringify(updateX)
+    api.updateGame(dataObject)
+      .then(ui.updateGameSuccess)
+      .catch(ui.updateGameFailure)
+    if (over === true) {
+      counter = 1
+    }
+    // update game when player is O
+  } else if ((playerToken === 'X') && (counter === 0)) {
+    const updateO = {
+      game: {
+        cell: {
+          index: this.id,
+          value: 'o'
+        },
+        over: over
+      }
+    }
+    const dataObject = JSON.stringify(updateO)
+    api.updateGame(dataObject)
+      .then(ui.updateGameSuccess)
+      .catch(ui.updateGameFailure)
+    if (over === true) {
+      counter = 1
+    }
+  }
+}
 
 const addHandlers = function () {
   $('.gameSquare').on('click', onBoxClick)
-  // $('.gameSquare').on('click', onUpdateGame)
+  $('.gameSquare').on('click', onUpdateGame)
   $('#sign-up').on('submit', onSignUp)
   $('#sign-in').on('submit', onSignIn)
   $('#change-pw').on('submit', onChangePassword)

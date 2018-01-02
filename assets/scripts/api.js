@@ -55,11 +55,13 @@ const startGame = function (data) {
 const updateGame = function (data) {
   console.log('is this working', data)
   return $.ajax({
-    url: config.apiOrigin + '/games/' + data.game.id,
+    url: config.apiOrigin + '/games/' + store.gameInfo.game.id,
     method: 'PATCH',
     headers: {
-      Authorization: 'Token token=' + store.user.token
-    }
+      Authorization: 'Token token=' + store.user.token,
+      'Content-Type': 'application/json'
+    },
+    data
   })
 }
 

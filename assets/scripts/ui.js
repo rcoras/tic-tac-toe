@@ -63,7 +63,7 @@ const signOutFailure = function (error) {
 
 const startGameSuccess = function (data) {
   console.log('Successfully Started Game')
-  store.data = data
+  store.gameInfo = data
   console.log(store.data)
 }
 
@@ -72,8 +72,9 @@ const startGameFailure = function (error) {
 }
 
 const updateGameSuccess = function (data) {
+  store.updatedGame = data
   console.log('Successfully Updated Game')
-  console.log(data)
+  console.log(store.updatedGame)
 }
 
 const updateGameFailure = function (error) {
