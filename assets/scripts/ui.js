@@ -12,6 +12,7 @@ const signUpFailure = function (error) {
   console.error(error)
   console.log('this didn\'t work')
   $('#signInMessaging').text('Uh Oh That didn\'t work, try again')
+  document.getElementById('sign-up').reset()
 }
 
 const signInSuccess = function (data) {
@@ -30,22 +31,29 @@ const signInFailure = function (error) {
   console.error(error)
   console.log('Error on sign in')
   $('#signInMessaging').text('Uh Oh That didn\'t work, try again')
+  document.getElementById('sign-in').reset()
 }
 
 const changePasswordSuccess = function (data) {
   console.log('Successfully changed password')
   $('#signInMessaging').text('Your password has been updated')
+  document.getElementById('change-pw').reset()
 }
 
 const changePasswordFailure = function (error) {
   console.error(error)
   $('#signInMessaging').text('Uh Oh That didn\'t work, try again')
+  document.getElementById('change-pw').reset()
 }
 
 const signOutSuccess = function (data) {
   console.log('Successfully signed out')
   store.user = null
   $('#signInMessaging').text('You\'re signed out!')
+  $('#closeSignInButton').show()
+  $('#closeSignUpButton').show()
+  $('#showChangePwButton').addClass('hidden')
+  $('#showSignOut').addClass('hidden')
 }
 
 const signOutFailure = function (error) {
