@@ -15,26 +15,28 @@
 
       <nav class="nav">
         <!-- Button trigger sign-up modal -->
-        <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#signUpModal">
+        <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#signUpModal" id="closeSignUpButton">
           Sign Up
         </button>
         <!-- Button trigger sign-in modal -->
-        <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#signInModal">
+        <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#signInModal" id="closeSignInButton">
           Sign In
         </button>
 
         <!-- Button trigger change password modal -->
-        <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#changePwModal">
+        <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#changePwModal" id="showChangePwButton">
           Change Password
         </button>
 
         <!-- Sign Out button -->
         <form id="sign-out">
-        <button type="button" class="btn btn-primary">
+        <button type="button" class="btn btn-primary" id="showSignOut">
           Sign Out
         </button>
         </form>
       </nav>
+
+      <p id="signInMessaging"></p>
 
       <h1>Tic Tac Toe</h1>
 
