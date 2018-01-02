@@ -21,8 +21,9 @@ const signInSuccess = function (data) {
   store.user = data.user
   $('#signInMessaging').text('You\'ve successfully signed in! Press start playing to start!')
   $('#closeSignInButton').hide()
-  $('#showChangePwButton').show()
-  $('#showSignOut').show()
+  $('#closeSignUpButton').hide()
+  $('#showChangePwButton').removeClass('hidden')
+  $('#showSignOut').removeClass('hidden')
 }
 
 const signInFailure = function (error) {
@@ -33,7 +34,7 @@ const signInFailure = function (error) {
 
 const changePasswordSuccess = function (data) {
   console.log('Successfully changed password')
-  $('#signInMessaging').text('You\'re password has been updated')
+  $('#signInMessaging').text('Your password has been updated')
 }
 
 const changePasswordFailure = function (error) {
