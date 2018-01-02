@@ -36,6 +36,14 @@ const checkForWinner = function () {
   }
 }
 
+const isBoardFull = function (gameArray) {
+  for (let i = 0; i < gameArray.length; i++) {
+    if (gameArray[i] === '') {
+      return false
+    }
+  }
+}
+
 const onBoxClick = function (event) {
   // create boxId token to use in jquery to update correct box
   const boxId = '#' + this.id
@@ -60,6 +68,8 @@ const onBoxClick = function (event) {
       gameArray[this.id] = 'o'
       $('#message').text('X you\'re up')
     }
+  } else {
+    $('#message').text('You can\'t move there. Choose an empty square')
   }
   if (checkForWinner() === true) {
     if (playerToken === 'O') {
