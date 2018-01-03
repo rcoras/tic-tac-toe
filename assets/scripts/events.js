@@ -158,6 +158,7 @@ const onStartGame = function (event) {
 }
 
 const onUpdateGame = function () {
+  console.log(store)
   const data = store.data
   // console.log('what data do I have', data)
   if (emptySquare !== '') {
