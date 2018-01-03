@@ -48,6 +48,7 @@ const isBoardFull = function (gameArray) {
 const onBoxClick = function (event) {
   // create boxId token to use in jquery to update correct box
   const boxId = '#' + this.id
+  const idForUpdate = event.target.id
   // check if square is empty
   if (isGameOver === true) {
     return
@@ -63,12 +64,22 @@ const onBoxClick = function (event) {
       playerToken = 'O'
       if (isBoardFull(gameArray) === false) {
         $('#message').text('O you\'re up')
-        onUpdateGame()
+        onUpdateGame(idForUpdate)
       } else if (checkForWinner() === false) {
         $('#message').text('DRAW. No Winner. Press Button to Play Again')
-        onUpdateGame()
-        // counter = counter + 1
-        // console.log(counter)
+        const updateX = {
+          game: {
+            cell: {
+              index: boxId,
+              value: 'x'
+            },
+            over: true
+          }
+        }
+        const dataObject = JSON.stringify(updateX)
+        api.updateGame(dataObject)
+          .then(ui.updateGameSuccess)
+          .catch(ui.updateGameFailure)
       }
       // console.log(gameArray)
     } else {
@@ -76,7 +87,7 @@ const onBoxClick = function (event) {
       $(boxId).text('O')
       gameArray[this.id] = 'o'
       $('#message').text('X you\'re up')
-      onUpdateGame()
+      onUpdateGame(idForUpdate)
     }
   } else if (isBoardFull(gameArray) === false) {
     $('#message').text('You can\'t move there. Choose an empty square')
@@ -85,11 +96,11 @@ const onBoxClick = function (event) {
     if (playerToken === 'O') {
       // message opposite of player token because token switches with each turn
       $('#message').text('X WINS!')
-      onUpdateGame()
+      onUpdateGame(idForUpdate)
     } else $('#message').text('O WINS!')
     console.log('winner board', gameArray)
     isGameOver = true
-    onUpdateGame()
+    onUpdateGame(idForUpdate)
   }
 }
 
@@ -157,10 +168,9 @@ const onStartGame = function (event) {
     .catch(ui.startGameFailure)
 }
 
-const onUpdateGame = function () {
-  console.log(store)
+const onUpdateGame = function (boxId) {
+  // console.log(store)
   const data = store.data
-  // console.log('what data do I have', data)
   if (emptySquare !== '') {
     return
   }
@@ -169,18 +179,13 @@ const onUpdateGame = function () {
   if ((checkForWinner() === true) || (isBoardFull(gameArray) === true)) {
     over = true
   }
-  // if (counter > 0) {
-  //   return
-  // }
-  // if (over) {
-  //   return
-  // }
+
   // update game when player is X
   if (playerToken === 'O') {
     const updateX = {
       game: {
         cell: {
-          index: this.id,
+          index: boxId,
           value: 'x'
         },
         over: over
@@ -195,7 +200,7 @@ const onUpdateGame = function () {
     const updateO = {
       game: {
         cell: {
-          index: this.id,
+          index: boxId,
           value: 'o'
         },
         over: over
