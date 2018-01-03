@@ -8,6 +8,7 @@ let playerToken = 'X'
 const emptySquare = ''
 let isGameOver = false
 let startGame = false
+// let counter = 0
 
 let gameArray = ['', '', '', '', '', '', '', '', '']
 
@@ -62,8 +63,12 @@ const onBoxClick = function (event) {
       playerToken = 'O'
       if (isBoardFull(gameArray) === false) {
         $('#message').text('O you\'re up')
+        onUpdateGame()
       } else if (checkForWinner() === false) {
         $('#message').text('DRAW. No Winner. Press Button to Play Again')
+        onUpdateGame()
+        // counter = counter + 1
+        // console.log(counter)
       }
       // console.log(gameArray)
     } else {
@@ -71,6 +76,7 @@ const onBoxClick = function (event) {
       $(boxId).text('O')
       gameArray[this.id] = 'o'
       $('#message').text('X you\'re up')
+      onUpdateGame()
     }
   } else if (isBoardFull(gameArray) === false) {
     $('#message').text('You can\'t move there. Choose an empty square')
@@ -79,9 +85,11 @@ const onBoxClick = function (event) {
     if (playerToken === 'O') {
       // message opposite of player token because token switches with each turn
       $('#message').text('X WINS!')
+      onUpdateGame()
     } else $('#message').text('O WINS!')
     console.log('winner board', gameArray)
     isGameOver = true
+    onUpdateGame()
   }
 }
 
@@ -157,15 +165,17 @@ const onUpdateGame = function () {
   }
   // check if game is over to use over in json needed for api
   let over = false
-  let counter = 0
   if ((checkForWinner() === true) || (isBoardFull(gameArray) === true)) {
     over = true
   }
+  // if (counter > 0) {
+  //   return
+  // }
   // if (over) {
   //   return
   // }
   // update game when player is X
-  if ((playerToken === 'O') && (counter === 0)) {
+  if (playerToken === 'O') {
     const updateX = {
       game: {
         cell: {
@@ -179,11 +189,8 @@ const onUpdateGame = function () {
     api.updateGame(dataObject)
       .then(ui.updateGameSuccess)
       .catch(ui.updateGameFailure)
-    if (over === true) {
-      counter = 1
-    }
     // update game when player is O
-  } else if ((playerToken === 'X') && (counter === 0)) {
+  } else if (playerToken === 'X') {
     const updateO = {
       game: {
         cell: {
@@ -197,15 +204,12 @@ const onUpdateGame = function () {
     api.updateGame(dataObject)
       .then(ui.updateGameSuccess)
       .catch(ui.updateGameFailure)
-    if (over === true) {
-      counter = 1
-    }
   }
 }
 
 const addHandlers = function () {
   $('.gameSquare').on('click', onBoxClick)
-  $('.gameSquare').on('click', onUpdateGame)
+  // $('.gameSquare').on('click', onUpdateGame)
   $('#sign-up').on('submit', onSignUp)
   $('#sign-in').on('submit', onSignIn)
   $('#change-pw').on('submit', onChangePassword)
