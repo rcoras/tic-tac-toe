@@ -9,8 +9,7 @@ const emptySquare = ''
 let isGameOver = false
 let startGame = false
 let over = false
-
-// let counter = 0
+let gameBegin = false
 
 let gameArray = ['', '', '', '', '', '', '', '', '']
 
@@ -72,7 +71,6 @@ const onBoxClick = function (event) {
         over = true
         onUpdateGame(idForUpdate)
       }
-      // console.log(gameArray)
     } else {
       playerToken = 'X'
       $(boxId).text('O')
@@ -99,6 +97,7 @@ const onSignUp = function (event) {
   const data = getFormFields(this)
   event.preventDefault()
   $('#signUpModal').modal('hide')
+  this.reset()
   console.log(data)
   api.signUp(data)
     .then(ui.signUpSuccess)
@@ -108,6 +107,8 @@ const onSignUp = function (event) {
 const onSignIn = function (event) {
   const data = getFormFields(this)
   event.preventDefault()
+  gameBegin = true
+  this.reset()
   $('#signInModal').modal('hide')
   api.signIn(data)
     .then(ui.signInSuccess)
@@ -119,6 +120,7 @@ const onChangePassword = function (event) {
   console.log(data)
   event.preventDefault()
   $('#changePwModal').modal('hide')
+  this.reset()
   api.changePassword(data)
     .then(ui.changePasswordSuccess)
     .catch(ui.changePasswordFailure)
@@ -135,6 +137,9 @@ let gameCount = 0
 
 const onStartGame = function (event) {
   event.preventDefault()
+  if (gameBegin === false) {
+    return
+  }
   startGame = true
   $('#message').text('X make your first move')
   gameCount += 1
@@ -209,6 +214,10 @@ const onGetStats = function (event) {
     .then(ui.getStatsSuccess)
     .catch(ui.getStatsFailure)
 }
+//
+// const onClearModal = function (event) {
+//   $('.clear').val('')
+// }
 
 const addHandlers = function () {
   $('.gameSquare').on('click', onBoxClick)
