@@ -8,6 +8,8 @@ let playerToken = 'X'
 const emptySquare = ''
 let isGameOver = false
 let startGame = false
+let over = false
+
 // let counter = 0
 
 let gameArray = ['', '', '', '', '', '', '', '', '']
@@ -67,19 +69,8 @@ const onBoxClick = function (event) {
         onUpdateGame(idForUpdate)
       } else if (checkForWinner() === false) {
         $('#message').text('DRAW. No Winner. Press Button to Play Again')
-        const updateX = {
-          game: {
-            cell: {
-              index: boxId,
-              value: 'x'
-            },
-            over: true
-          }
-        }
-        const dataObject = JSON.stringify(updateX)
-        api.updateGame(dataObject)
-          .then(ui.updateGameSuccess)
-          .catch(ui.updateGameFailure)
+        over = true
+        onUpdateGame(idForUpdate)
       }
       // console.log(gameArray)
     } else {
@@ -175,7 +166,6 @@ const onUpdateGame = function (boxId) {
     return
   }
   // check if game is over to use over in json needed for api
-  let over = false
   if ((checkForWinner() === true) || (isBoardFull(gameArray) === true)) {
     over = true
   }
@@ -213,6 +203,13 @@ const onUpdateGame = function (boxId) {
   }
 }
 
+const onGetStats = function (event) {
+  event.preventDefault()
+  api.getStats()
+    .then(ui.getStatsSuccess)
+    .catch(ui.getStatsFailure)
+}
+
 const addHandlers = function () {
   $('.gameSquare').on('click', onBoxClick)
   // $('.gameSquare').on('click', onUpdateGame)
@@ -221,6 +218,7 @@ const addHandlers = function () {
   $('#change-pw').on('submit', onChangePassword)
   $('#sign-out').on('click', onSignOut)
   $('#start-game-button').on('click', onStartGame)
+  $('#getStats').on('click', onGetStats)
 }
 
 module.exports = {

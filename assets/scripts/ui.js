@@ -81,6 +81,16 @@ const updateGameFailure = function (error) {
   console.error(error)
 }
 
+const getStatsSuccess = function (data) {
+  store.stats = data
+  console.log(store)
+  $('#signInMessaging').text('You\'ve completed ' + store.stats.games.length + ' games')
+}
+
+const getStatsFailure = function (error) {
+  console.error(error)
+}
+
 module.exports = {
   signUpSuccess,
   signUpFailure,
@@ -93,5 +103,7 @@ module.exports = {
   startGameSuccess,
   startGameFailure,
   updateGameSuccess,
-  updateGameFailure
+  updateGameFailure,
+  getStatsSuccess,
+  getStatsFailure
 }
