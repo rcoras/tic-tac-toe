@@ -22,8 +22,10 @@ const signInSuccess = function (data) {
   $('#signInMessaging').text('You\'ve successfully signed in! Press start playing to start!')
   $('#closeSignInButton').hide()
   $('#closeSignUpButton').hide()
+  $('#start-game-button').removeClass('hidden')
   $('#showChangePwButton').removeClass('hidden')
   $('#showSignOut').removeClass('hidden')
+  $('#getStats').removeClass('hidden')
 }
 
 const signInFailure = function (error) {
@@ -52,6 +54,8 @@ const signOutSuccess = function (data) {
   $('#closeSignUpButton').show()
   $('#showChangePwButton').addClass('hidden')
   $('#showSignOut').addClass('hidden')
+  $('#start-game-button').addClass('hidden')
+  $('#getStats').addClass('hidden')
 }
 
 const signOutFailure = function (error) {

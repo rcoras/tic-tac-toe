@@ -214,10 +214,6 @@ const onGetStats = function (event) {
     .then(ui.getStatsSuccess)
     .catch(ui.getStatsFailure)
 }
-//
-// const onClearModal = function (event) {
-//   $('.clear').val('')
-// }
 
 const addHandlers = function () {
   $('.gameSquare').on('click', onBoxClick)

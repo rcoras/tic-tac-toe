@@ -1,4 +1,4 @@
-Read Me Tic Tac Toe Game
+# Tic Tac Toe Game
 
 This is a website that allows two users to play tic tac toe against each other using the same browser. Player 1 clicks first, then player 2 clicks the board. The game will stop and declare a winner once a player has 3 in a row. If all squares are filled a draw will be declared. Players can play multiple games by clicking start new game button.
 
