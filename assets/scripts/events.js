@@ -129,15 +129,26 @@ const onChangePassword = function (event) {
 
 const onSignOut = function (event) {
   event.preventDefault()
+  gameArray = ['', '', '', '', '', '', '', '', '']
+  $('#0').text('')
+  $('#1').text('')
+  $('#2').text('')
+  $('#3').text('')
+  $('#4').text('')
+  $('#5').text('')
+  $('#6').text('')
+  $('#7').text('')
+  $('#8').text('')
+  over = false
+  startGame = false
   api.signOut()
     .then(ui.signOutSuccess)
     .catch(ui.signOutFailure)
 }
 
-let gameCount = 0
-
 const onStartGame = function (event) {
   event.preventDefault()
+  let gameCount = 0
   if (gameBegin === false) {
     return
   }
