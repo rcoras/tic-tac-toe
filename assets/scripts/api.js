@@ -53,7 +53,6 @@ const startGame = function (data) {
 
 // need to send data correctly. Might need to use - contentType: 'application/json' in code as well
 const updateGame = function (data) {
-  console.log('is this working', data)
   return $.ajax({
     url: config.apiOrigin + '/games/' + store.gameInfo.game.id,
     method: 'PATCH',
