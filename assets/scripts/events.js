@@ -141,6 +141,7 @@ const onSignOut = function (event) {
   $('#8').text('')
   over = false
   startGame = false
+  $('#message').text('')
   api.signOut()
     .then(ui.signOutSuccess)
     .catch(ui.signOutFailure)
@@ -154,6 +155,7 @@ const onStartGame = function (event) {
   }
   startGame = true
   $('#message').text('X make your first move')
+  $('#signInMessaging').text('')
   over = false
   gameCount += 1
   if (gameCount >= 1) {
