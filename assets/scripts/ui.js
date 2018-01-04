@@ -56,6 +56,9 @@ const signOutSuccess = function (data) {
   $('#closeSignUpButton').show()
   $('#showChangePwButton').addClass('hidden')
   $('#showSignOut').addClass('hidden')
+  $('#start-game-button').addClass('hidden')
+  $('#getStats').addClass('hidden')
+  // $('#game-board').addClass('hidden')
 }
 
 const signOutFailure = function (error) {
