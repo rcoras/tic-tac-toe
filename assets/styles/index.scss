@@ -12,6 +12,10 @@ body {
   // // transform: translate(-50%, -50%);
 }
 
+.hidden {
+  display: none;
+}
+
 .box {
   border: 5px solid #2f435e;
   font-size: 32px;
@@ -21,9 +25,6 @@ body {
   width: 200px;
 }
 
-.hidden {
-  display: none;
-}
 
 table {
   width: 100%;
