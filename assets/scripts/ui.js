@@ -27,6 +27,7 @@ const signInSuccess = function (data) {
   $('#showChangePwButton').removeClass('hidden')
   $('#showSignOut').removeClass('hidden')
   $('#getStats').removeClass('hidden')
+  $('#game-board').removeClass('hidden')
 }
 
 const signInFailure = function (error) {
@@ -58,7 +59,7 @@ const signOutSuccess = function (data) {
   $('#showSignOut').addClass('hidden')
   $('#start-game-button').addClass('hidden')
   $('#getStats').addClass('hidden')
-  // $('#game-board').addClass('hidden')
+  $('#game-board').addClass('hidden')
 }
 
 const signOutFailure = function (error) {
