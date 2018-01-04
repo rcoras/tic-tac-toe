@@ -110,6 +110,7 @@ const onSignIn = function (event) {
   gameBegin = true
   this.reset()
   $('#signInModal').modal('hide')
+  this.reset()
   api.signIn(data)
     .then(ui.signInSuccess)
     .catch(ui.signInFailure)
@@ -142,6 +143,7 @@ const onStartGame = function (event) {
   }
   startGame = true
   $('#message').text('X make your first move')
+  over = false
   gameCount += 1
   if (gameCount >= 1) {
     $('#start-game-button').text('Start New Game')
