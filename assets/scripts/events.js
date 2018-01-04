@@ -55,6 +55,7 @@ const onBoxClick = function (event) {
     return
   }
   if (startGame === false) {
+    $('#message').text('Press start new game button to begin')
     return
   }
   if ($(boxId).text() === emptySquare) {
@@ -87,7 +88,7 @@ const onBoxClick = function (event) {
       $('#message').text('X WINS!')
       onUpdateGame(idForUpdate)
     } else $('#message').text('O WINS!')
-    console.log('winner board', gameArray)
+    // console.log('winner board', gameArray)
     isGameOver = true
     onUpdateGame(idForUpdate)
   }
@@ -98,7 +99,7 @@ const onSignUp = function (event) {
   event.preventDefault()
   $('#signUpModal').modal('hide')
   this.reset()
-  console.log(data)
+  // console.log(data)
   api.signUp(data)
     .then(ui.signUpSuccess)
     .catch(ui.signUpFailure)
@@ -118,7 +119,7 @@ const onSignIn = function (event) {
 
 const onChangePassword = function (event) {
   const data = getFormFields(this)
-  console.log(data)
+  // console.log(data)
   event.preventDefault()
   $('#changePwModal').modal('hide')
   this.reset()
@@ -181,7 +182,7 @@ const onStartGame = function (event) {
 
 const onUpdateGame = function (boxId) {
   // console.log(store)
-  const data = store.data
+  // const data = store.data
   if (emptySquare !== '') {
     return
   }

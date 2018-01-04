@@ -48,7 +48,7 @@ const changePasswordFailure = function (error) {
 }
 
 const signOutSuccess = function (data) {
-  console.log('Successfully signed out')
+  // console.log('Successfully signed out')
   store.user = null
   $('#signInMessaging').text('You\'re signed out!')
   $('#closeSignInButton').show()
@@ -66,9 +66,9 @@ const signOutFailure = function (error) {
 }
 
 const startGameSuccess = function (data) {
-  console.log('Successfully Started Game')
+  // console.log('Successfully Started Game')
   store.gameInfo = data
-  console.log(store)
+  // console.log(store)
 }
 
 const startGameFailure = function (error) {
@@ -77,8 +77,8 @@ const startGameFailure = function (error) {
 
 const updateGameSuccess = function (data) {
   store.updatedGame = data
-  console.log('Successfully Updated Game')
-  console.log(store.updatedGame)
+  // console.log('Successfully Updated Game')
+  // console.log(store.updatedGame)
 }
 
 const updateGameFailure = function (error) {
@@ -87,7 +87,7 @@ const updateGameFailure = function (error) {
 
 const getStatsSuccess = function (data) {
   store.stats = data
-  console.log(store)
+  // console.log(store)
   $('#signInMessaging').text('You\'ve completed ' + store.stats.games.length + ' games')
 }
 
