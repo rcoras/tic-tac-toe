@@ -139,6 +139,7 @@ const onStartGame = function (event) {
   event.preventDefault()
   startGame = true
   $('#message').text('X make your first move')
+  over = false
   gameCount += 1
   if (gameCount >= 1) {
     $('#start-game-button').text('Start New Game')
